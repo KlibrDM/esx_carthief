@@ -11,7 +11,7 @@ Config.Zones = {
 		Type  = 1,
 		Colour    = 6, --BLIP
 		Id        = 229, --BLIP
-		Title     = "Vehicle Robbery", --BLIP
+		Title     = _U("vehicle_robbery"), --BLIP
 	},
 }
 
