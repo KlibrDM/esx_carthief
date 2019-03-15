@@ -104,11 +104,11 @@ function SpawnCar()
 					--For delivery blip
 					isDelivered = 0
 				else
-					ESX.ShowNotification("Not enough cops in town!")
+					ESX.ShowNotification(_U('not_enough_cops'))
 				end
 			end)
 		else
-			ESX.ShowNotification("There is already a car robbery in progress!")
+			ESX.ShowNotification(_U('already_robbery'))
 		end
 	end)
 end
@@ -140,7 +140,7 @@ function FinishDelivery()
     TriggerServerEvent('esx_carthief:stopalertcops')
 		
   else
-		TriggerEvent('esx:showNotification', "You have to use the car that was provided for you and you must come to a full stop.")
+		TriggerEvent('esx:showNotification', _U('car_provided_rule'))
   end
 end
 
@@ -170,12 +170,12 @@ Citizen.CreateThread(function()
   while true do
     Wait(1000)
 		if isTaken == 1 and isDelivered == 0 and not (GetVehiclePedIsIn(GetPlayerPed(-1), false) == car) then
-			TriggerEvent('esx:showNotification', "You have 1 minute to get back in the car")
+			TriggerEvent('esx:showNotification', _U('get_back_car_1m'))
 			Wait(50000)
 			if isTaken == 1 and isDelivered == 0 and not (GetVehiclePedIsIn(GetPlayerPed(-1), false) == car) then
-				TriggerEvent('esx:showNotification', "You have 10 seconds to get back in the car")
+				TriggerEvent('esx:showNotification', _U('get_back_car_10s'))
 				Wait(10000)
-				TriggerEvent('esx:showNotification', "Mission failed!")
+				TriggerEvent('esx:showNotification', _U('mission_failed'))
 				AbortDelivery()
 			end
 		end
@@ -212,17 +212,17 @@ end)
 
 RegisterNetEvent('esx_carthief:setcopnotification')
 AddEventHandler('esx_carthief:setcopnotification', function()
-	ESX.ShowNotification("Car stealing in progress. Vehicle tracker will be active on your radar")
+	ESX.ShowNotification(_U('car_stealing_in_progress'))
 end)
 
 AddEventHandler('esx_carthief:hasEnteredMarker', function(zone)
   if LastZone == 'menucarthief' then
     CurrentAction     = 'carthief_menu'
-    CurrentActionMsg  = 'Press ~INPUT_CONTEXT~ to steal a car'
+    CurrentActionMsg  = _U('steal_a_car')
     CurrentActionData = {zone = zone}
   elseif LastZone == 'cardelivered' then
     CurrentAction     = 'cardelivered_menu'
-    CurrentActionMsg  = 'Press ~INPUT_CONTEXT~ to drop the car off'
+    CurrentActionMsg  = _U('drop_car_off')
     CurrentActionData = {zone = zone}
   end
 end)
