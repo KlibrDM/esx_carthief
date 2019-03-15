@@ -19,3 +19,5 @@ client_scripts {
 	'locales/en.lua',
 	'locales/es.lua'
 }
+
+dependency 'es_extended'
