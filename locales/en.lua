@@ -1,6 +1,7 @@
 Locales['en'] = {
   ['vehicle_robbery'] = 'vehicle Robbery!',
   ['mission_failed'] = 'mision Failed!',
+  ['delivery_point'] = 'Delivery point',
   ['get_back_car_10s'] = 'you have 10 seconds to get back in the car',
   ['get_back_car_1m'] = 'you have 1 minute to get back in the car',
   ['car_provided_rule'] = 'you have to use the car that was provided for you and you must come to a full stop.',
