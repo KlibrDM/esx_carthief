@@ -107,7 +107,7 @@ function SpawnCar()
 					SetBlipColour(deliveryblip, Config.DeliveryBlipColour)
 					SetBlipAsShortRange(deliveryblip, true)
 					BeginTextCommandSetBlipName("STRING")
-					AddTextComponentString("Delivery point")
+					AddTextComponentString(_U("delivery_point"))
 					EndTextCommandSetBlipName(deliveryblip)
 					
 					SetBlipRoute(deliveryblip, true)
