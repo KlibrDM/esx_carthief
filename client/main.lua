@@ -10,7 +10,7 @@ local alldeliveries             = {}
 local randomdelivery            = 1
 local isTaken                   = 0
 local isDelivered               = 0
-local car												= 0
+local car						= 0
 local copblip
 local deliveryblip
 
@@ -324,6 +324,6 @@ Citizen.CreateThread(function()
     SetBlipColour(info.blip, info.Colour)
     SetBlipAsShortRange(info.blip, true)
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(info.Title)
+	AddTextComponentString(_U('vehicle_robbery'))
     EndTextCommandSetBlipName(info.blip)
 end)
