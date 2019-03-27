@@ -16,7 +16,6 @@ Config.Zones = {
 		MarkerType		= 1, -- If '-1' marker not be displayed
 		BlipColour		= 6,
 		Sprite			= 229,
-		Title			= _U("vehicle_robbery"),
 	},
 }
 
