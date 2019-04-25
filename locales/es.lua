@@ -8,5 +8,6 @@ Locales['es'] = {
   ['not_enough_cops'] = 'no hay suficiente policía en la ciudad!',
   ['car_stealing_in_progress'] = 'robo de vehículo en progreso. El seguimiento del vehículo estará disponible en tu radar',
   ['steal_a_car'] = 'pulsa ~INPUT_CONTEXT~ para robar un vehículo',
-  ['drop_car_off'] = 'pulsa ~INPUT_CONTEXT~ para dejar el vehículo'
+  ['drop_car_off'] = 'pulsa ~INPUT_CONTEXT~ para dejar el vehículo',
+  ['cooldown'] = 'un robo de vehículo fue completado recientemente. Espera %s segundos para robar otro.'
 }
