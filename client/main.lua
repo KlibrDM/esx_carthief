@@ -49,66 +49,70 @@ Citizen.CreateThread(function()
 end)
 
 function SpawnCar()
-	ESX.TriggerServerCallback('esx_carthief:isActive', function(isActive)
-		if isActive == 0 then
-			ESX.TriggerServerCallback('esx_carthief:anycops', function(anycops)
-				if anycops >= Config.CopsRequired then
+	ESX.TriggerServerCallback('esx_carthief:isActive', function(isActive, cooldown)
+		if cooldown <= 0 then
+			if isActive == 0 then
+				ESX.TriggerServerCallback('esx_carthief:anycops', function(anycops)
+					if anycops >= Config.CopsRequired then
 
-					--Get a random delivery point
-					randomdelivery = math.random(1,#alldeliveries)
-					
-					--Delete vehicles around the area (not sure if it works)
-					ClearAreaOfVehicles(Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, 10.0, false, false, false, false, false)
-					
-					--Delete old vehicle and remove the old blip (or nothing if there's no old delivery)
-					SetEntityAsNoLongerNeeded(car)
-					DeleteVehicle(car)
-					RemoveBlip(deliveryblip)
-					
+						--Get a random delivery point
+						randomdelivery = math.random(1,#alldeliveries)
+						
+						--Delete vehicles around the area (not sure if it works)
+						ClearAreaOfVehicles(Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, 10.0, false, false, false, false, false)
+						
+						--Delete old vehicle and remove the old blip (or nothing if there's no old delivery)
+						SetEntityAsNoLongerNeeded(car)
+						DeleteVehicle(car)
+						RemoveBlip(deliveryblip)
+						
 
-					--Get random car
-					randomcar = math.random(1,#alldeliveries[randomdelivery].car)
+						--Get random car
+						randomcar = math.random(1,#alldeliveries[randomdelivery].car)
 
-					--Spawn Car
-					local vehiclehash = GetHashKey(alldeliveries[randomdelivery].car[randomcar])
-					RequestModel(vehiclehash)
-					while not HasModelLoaded(vehiclehash) do
+						--Spawn Car
+						local vehiclehash = GetHashKey(alldeliveries[randomdelivery].car[randomcar])
 						RequestModel(vehiclehash)
-						Citizen.Wait(1)
-					end
-					car = CreateVehicle(vehiclehash, Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, 0.0, true, false)
-					SetEntityAsMissionEntity(car, true, true)
-					
-					--Teleport player in car
-					TaskWarpPedIntoVehicle(GetPlayerPed(-1), car, -1)
-					
-					--Set delivery blip
-					deliveryblip = AddBlipForCoord(alldeliveries[randomdelivery].posx, alldeliveries[randomdelivery].posy, alldeliveries[randomdelivery].posz)
-					SetBlipSprite(deliveryblip, 1)
-					SetBlipDisplay(deliveryblip, 4)
-					SetBlipScale(deliveryblip, 1.0)
-					SetBlipColour(deliveryblip, 5)
-					SetBlipAsShortRange(deliveryblip, true)
-					BeginTextCommandSetBlipName("STRING")
-					AddTextComponentString("Delivery point")
-					EndTextCommandSetBlipName(deliveryblip)
-					
-					SetBlipRoute(deliveryblip, true)
+						while not HasModelLoaded(vehiclehash) do
+							RequestModel(vehiclehash)
+							Citizen.Wait(1)
+						end
+						car = CreateVehicle(vehiclehash, Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, 0.0, true, false)
+						SetEntityAsMissionEntity(car, true, true)
+						
+						--Teleport player in car
+						TaskWarpPedIntoVehicle(GetPlayerPed(-1), car, -1)
+						
+						--Set delivery blip
+						deliveryblip = AddBlipForCoord(alldeliveries[randomdelivery].posx, alldeliveries[randomdelivery].posy, alldeliveries[randomdelivery].posz)
+						SetBlipSprite(deliveryblip, 1)
+						SetBlipDisplay(deliveryblip, 4)
+						SetBlipScale(deliveryblip, 1.0)
+						SetBlipColour(deliveryblip, 5)
+						SetBlipAsShortRange(deliveryblip, true)
+						BeginTextCommandSetBlipName("STRING")
+						AddTextComponentString("Delivery point")
+						EndTextCommandSetBlipName(deliveryblip)
+						
+						SetBlipRoute(deliveryblip, true)
 
-					--Register acitivity for server
-					TriggerServerEvent('esx_carthief:registerActivity', 1)
-					
-					--For delivery blip
-					isTaken = 1
-					
-					--For delivery blip
-					isDelivered = 0
-				else
-					ESX.ShowNotification(_U('not_enough_cops'))
-				end
-			end)
+						--Register acitivity for server
+						TriggerServerEvent('esx_carthief:registerActivity', 1)
+						
+						--For delivery blip
+						isTaken = 1
+						
+						--For delivery blip
+						isDelivered = 0
+					else
+						ESX.ShowNotification(_U('not_enough_cops'))
+					end
+				end)
+			else
+				ESX.ShowNotification(_U('already_robbery'))
+			end
 		else
-			ESX.ShowNotification(_U('already_robbery'))
+			ESX.ShowNotification(_U('cooldown', math.ceil(cooldown/1000)))
 		end
 	end)
 end

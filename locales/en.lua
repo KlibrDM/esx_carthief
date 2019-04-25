@@ -8,5 +8,6 @@ Locales['en'] = {
   ['not_enough_cops'] = 'not enough cops in town!',
   ['car_stealing_in_progress'] = 'car stealing in progress. Vehicle tracker will be active on your radar',
   ['steal_a_car'] = 'press ~INPUT_CONTEXT~ to steal a car',
-  ['drop_car_off'] = 'press ~INPUT_CONTEXT~ to drop the car off'
+  ['drop_car_off'] = 'press ~INPUT_CONTEXT~ to drop the car off',
+  ['cooldown'] = 'a vehicle robbery was recently completed. Wait %s seconds to steal another one.'
 }
