@@ -4,12 +4,16 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local activity = 0
 local activitySource = 0
+local cooldown = 0
 
 RegisterServerEvent('esx_carthief:pay')
 AddEventHandler('esx_carthief:pay', function(payment)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	xPlayer.addAccountMoney('black_money',tonumber(payment))
+	
+	--Add cooldown
+	cooldown = Config.CooldownMinutes * 60000
 end)
 
 ESX.RegisterServerCallback('esx_carthief:anycops',function(source, cb)
@@ -27,7 +31,7 @@ ESX.RegisterServerCallback('esx_carthief:anycops',function(source, cb)
 end)
 
 ESX.RegisterServerCallback('esx_carthief:isActive',function(source, cb)
-  cb(activity)
+  cb(activity, cooldown)
 end)
 
 RegisterServerEvent('esx_carthief:registerActivity')
@@ -90,5 +94,15 @@ AddEventHandler('playerDropped', function ()
 		--Set activity to 0
 		activity = 0
 		activitySource = 0
+	end
+end)
+
+--Cooldown manager
+AddEventHandler('onResourceStart', function(resource)
+	while true do
+		Wait(5000)
+		if cooldown > 0 then
+			cooldown = cooldown - 5000
+		end
 	end
 end)
