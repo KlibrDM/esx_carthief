@@ -9,7 +9,8 @@ server_scripts {
 	'config.lua',
 	'server/main.lua',
 	'locales/en.lua',
-	'locales/es.lua'
+	'locales/es.lua',
+	'locales/fr.lua'
 }
 
 client_scripts {
@@ -17,7 +18,8 @@ client_scripts {
 	'config.lua',
 	'client/main.lua',
 	'locales/en.lua',
-	'locales/es.lua'
+	'locales/es.lua',
+	'locales/fr.lua'
 }
 
 dependency 'es_extended'
