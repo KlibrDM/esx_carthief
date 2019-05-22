@@ -9,5 +9,5 @@ Locales['fr'] = {
   ['car_stealing_in_progress'] = 'Vol de voiture en cours. Un tracker est visible par la police !',
   ['steal_a_car'] = 'Appuyer sur ~INPUT_CONTEXT~ pour livrer un véhicule volé.',
   ['drop_car_off'] = 'Appuyer sur ~INPUT_CONTEXT~ pour livrer le véhicule',
-  ['cooldown'] = 'Un vol viens d'être fait. Attendez %s secondes pour voler à nouveau.'
+  ['cooldown'] = 'Un vol viens d\'être fait. Attendez %s secondes pour voler à nouveau.'
 }
