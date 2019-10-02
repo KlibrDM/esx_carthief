@@ -180,6 +180,8 @@ Citizen.CreateThread(function()
 				TriggerEvent('esx:showNotification', _U('get_back_car_10s'))
 				Wait(10000)
 				TriggerEvent('esx:showNotification', _U('mission_failed'))
+				TriggerServerEvent('esx_carthief:pay', 0) 
+				--Pay is called with 0 money reward so that cooldown is set on server side. 
 				AbortDelivery()
 			end
 		end
