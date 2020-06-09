@@ -77,7 +77,7 @@ function SpawnCar()
 							RequestModel(vehiclehash)
 							Citizen.Wait(1)
 						end
-						car = CreateVehicle(vehiclehash, Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, 0.0, true, false)
+						car = CreateVehicle(vehiclehash, Config.VehicleSpawnPoint.Pos.x, Config.VehicleSpawnPoint.Pos.y, Config.VehicleSpawnPoint.Pos.z, Config.VehicleSpawnPoint.Pos.alpha, true, false)
 						SetEntityAsMissionEntity(car, true, true)
 						
 						--Teleport player in car
