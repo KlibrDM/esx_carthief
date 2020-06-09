@@ -17,7 +17,7 @@ Config.Zones = {
 }
 
 Config.VehicleSpawnPoint = {
-      Pos   = {x = 767.71, y = -3195.20, z = 5.50},
+      Pos   = {x = 767.71, y = -3195.20, z = 5.50, alpha = 270.00}, --alpha is the orientation of the car
       Size  = {x = 3.0, y = 3.0, z = 1.0},
       Type  = -1,
 }
