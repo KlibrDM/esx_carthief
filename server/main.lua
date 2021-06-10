@@ -99,10 +99,12 @@ end)
 
 --Cooldown manager
 AddEventHandler('onResourceStart', function(resource)
-	while true do
-		Wait(5000)
-		if cooldown > 0 then
-			cooldown = cooldown - 5000
+	if resource == GetCurrentResourceName() then
+		while true do
+			Wait(5000)
+			if cooldown > 0 then
+				cooldown = cooldown - 5000
+			end
 		end
 	end
 end)
